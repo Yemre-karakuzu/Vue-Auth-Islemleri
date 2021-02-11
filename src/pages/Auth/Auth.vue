@@ -66,15 +66,19 @@ export default {
   },
   methods: {
     onSubmit() {
+      let authLink =
+        "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=";
+      if (this.isUser) {
+        authLink =
+          "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=";
+      }
+
       axios
-        .post(
-          "https://identitytoolkit.googleapis.com/v1/accounts:signInWithCustomToken?key=AIzaSyBz30_0EXUddBsdUD_CpAlRhzRZ_ppzr1Q",
-          {
-            email: this.user.email,
-            password: this.user.password,
-            returnSecureToken: true,
-          }
-        )
+        .post(authLink + "AIzaSyBz30_0EXUddBsdUD_CpAlRhzRZ_ppzr1Q", {
+          email: this.user.email,
+          password: this.user.password,
+          returnSecureToken: true,
+        })
         .then((response) => {
           console.log(response);
         });
