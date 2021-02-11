@@ -53,6 +53,7 @@
   </div>
 </template>
 <script>
+import axios from "vue-axios";
 export default {
   data() {
     return {
@@ -65,6 +66,18 @@ export default {
   },
   methods: {
     onSubmit() {
+      axios
+        .post(
+          "https://identitytoolkit.googleapis.com/v1/accounts:signInWithCustomToken?key=AIzaSyBz30_0EXUddBsdUD_CpAlRhzRZ_ppzr1Q",
+          {
+            email: this.user.email,
+            password: this.user.password,
+            returnSecureToken: true,
+          }
+        )
+        .then((response) => {
+          console.log(response);
+        });
       alert(this.user);
     },
   },
