@@ -8,7 +8,7 @@ Vue.use(Vuex)
 const store = new Vuex.Store({
     state: {
         token: "",
-        fbAPIKey: "Kendi Firebase Kodunuzu Koyunuz"
+        fbAPIKey: "Kendi Firebase Keyinizi koyunuz",
     },
     mutations: {
         setToken(state, token) {
@@ -48,18 +48,13 @@ const store = new Vuex.Store({
                 authLink = "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key="
             }
             return axios.post(
-                authLink + "AIzaSyBxDmSlS5VTh1NAPykdIgzn3gwsWv7s-WQ",
+                authLink + "Kendi Firebase Keyinizi koyunuz",
                 { email: authData.email, password: authData.password, returnSecureToken: true }
             ).then(response => {
-                // console.log(response.data)
                 commit("setToken", response.data.idToken)
                 localStorage.setItem("token", response.data.idToken)
-
                 localStorage.setItem("expirationDate", new Date().getTime() + +response.data.expiresIn * 1000)
-                // localStorage.setItem("expirationDate", new Date().getTime() + 10000)
-
                 dispatch("setTimeoutTimer", +response.data.expiresIn * 1000)
-                // dispatch("setTimeoutTimer", 10000)
             })
         },
         logout({ commit }) {
