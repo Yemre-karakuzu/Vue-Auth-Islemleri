@@ -5,7 +5,8 @@
         <h3>Vue.js | Auth İşlemleri</h3>
         <p>
           Bu bölge çok gizli bölgedir.. Ancak giriş yapanların görmesi gerekir.
-          Ondan dolayı lütfen ilk olarak giriş yapınız..
+          Ondan dolayı lütfen ilk olarak giriş yapınız.. Şaka Şaka zaten giriş
+          yaptınız.
         </p>
       </div>
     </div>

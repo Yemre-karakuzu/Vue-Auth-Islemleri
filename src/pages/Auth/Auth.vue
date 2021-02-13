@@ -53,7 +53,6 @@
   </div>
 </template>
 <script>
-import axios from "vue-axios";
 export default {
   data() {
     return {
@@ -66,23 +65,12 @@ export default {
   },
   methods: {
     onSubmit() {
-      let authLink =
-        "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=";
-      if (this.isUser) {
-        authLink =
-          "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=";
-      }
-
-      axios
-        .post(authLink + "AIzaSyBz30_0EXUddBsdUD_CpAlRhzRZ_ppzr1Q", {
-          email: this.user.email,
-          password: this.user.password,
-          returnSecureToken: true,
-        })
+      this.$store
+        .dispatch("login", { ...this.user, isUser: this.isUser })
         .then((response) => {
           console.log(response);
+          this.$router.push("/");
         });
-      alert(this.user);
     },
   },
 };
